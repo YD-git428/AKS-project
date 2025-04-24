@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flux-release
+  namespace: dev
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: AKS-project/terraform/app
+      sourceRef:
+        kind: GitRepository
+        name: aks-flux-repo
+        namespace: default
+      interval: 10m
+    valuesFiles:
+           - values.yaml
+    values:
+       replicaCount: 5

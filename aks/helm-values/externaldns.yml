@@ -1,0 +1,26 @@
+provider: azure
+
+rbac:
+  create: true
+
+#Creates my ClusterRole and ClusterRoleBinding Resources - needed to give ext-dns the permission to map the public ips from my ingress resource to my custom domain name as a TXT record
+  additionalPermissions: 
+  - apiGroups: [""]
+    resources: ["services","endpoints","pods", "nodes"]
+    verbs: ["get","watch","list"]
+  - apiGroups: ["extensions","networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get","watch","list"]
+
+extraArgs:
+  - --azure-resource-group=coderco-azureproj
+  - --source=ingress
+  - --domain-filter=youcefderder.co.uk
+volumeMounts:
+  - name: azure-config-file
+    mountPath: /etc/kubernetes
+    readOnly: true
+volumes:
+  - name: azure-config-file
+secret:
+  secretName: external-dns-secret

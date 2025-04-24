@@ -1,0 +1,8 @@
+.env
+.DS_Store
+*.tfstate
+*.tfstate.backup
+*.hcl
+*.terraform
+*.info
+aks/helm-values/secret/azure.json

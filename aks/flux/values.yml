@@ -1,0 +1,17 @@
+
+ingress:
+  enabled: true
+  className: "nginx"
+  additionalLabels: {}
+  annotations: 
+    nginx.org/hsts: "false"
+    cert-manager.io/cluster-issuer: issuer
+  hosts:
+    - host: flux.youcefderder.co.uk
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: 
+  - secretName: "secret-value-flux"
+    hosts:
+        - flux.youcefderder.co.uk

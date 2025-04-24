@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: remindersofspokenword@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - dns01:
+        azureDNS:
+          resourceGroupName: coderco-azureproj 
+          subscriptionID: 4334ca2a-df73-457e-abb8-063f0a4a800c
+          hostedZoneName: youcefderder.co.uk
+          environment: AzurePublicCloud
+          managedIdentity:
+            clientID: e092ed69-1e74-4446-b2bb-6fe190f02446

@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: aks-flux-repo
+  namespace: default
+spec:
+  interval: 5m0s
+  url: https://github.com/YD-git428/AKS-Project
+  ref:
+    branch: master
