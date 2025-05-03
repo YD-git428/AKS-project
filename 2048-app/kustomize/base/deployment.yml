@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2048-deploy
+  labels:
+    app: 2048-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: 2048-app
+  template:
+    metadata:
+      labels:
+        app: 2048-app
+    spec:
+      containers:
+        - name: 2048-app
+          image: youcefd/2048_game:latest
+          command: ["python", "-m", "http.server", "3000"]
+          ports:
+            - containerPort: 3000
