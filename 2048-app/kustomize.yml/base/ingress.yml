@@ -6,6 +6,10 @@ metadata:
     cert-manager.io/cluster-issuer: issuer
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - 2048-app.youcefderder.co.uk
+    secretName: tls-2048-app
   rules:
   - host: 2048-app.youcefderder.co.uk
     http:
@@ -17,3 +21,4 @@ spec:
             name: service-2048
             port:
               number: 80
+
